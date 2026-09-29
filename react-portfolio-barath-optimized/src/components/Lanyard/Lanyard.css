@@ -1,0 +1,159 @@
+ 
+.lanyard-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 572px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+ 
+.lanyard-card {
+  position: relative;
+  width: clamp(240px, 24vw, 310px);
+  max-width: 86vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: 50% 0%;
+  animation: gentleSwing 5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes gentleSwing {
+  0% {
+    transform: rotate(-2deg);
+  }
+  25% {
+    transform: rotate(1.5deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+  75% {
+    transform: rotate(-1deg);
+  }
+  100% {
+    transform: rotate(-2deg);
+  }
+}
+
+/* =========================================================
+   ATTACHMENT CLIP (Physical hanging point)
+========================================================= */
+.lanyard-clip-attachment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: -5px;
+  z-index: 3;
+  position: relative;
+}
+
+.lanyard-clip-ring {
+  width: 20px;
+  height: 12px;
+  border: 2.5px solid #94a3b8;
+  border-radius: 6px 6px 0 0;
+  border-bottom: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.lanyard-clip-metal {
+  width: 38px;
+  height: 14px;
+  background: linear-gradient(180deg, #e2e8f0 0%, #94a3b8 50%, #64748b 100%);
+  border-radius: 4px;
+  box-shadow:
+    0 2px 6px rgba(4, 25, 58, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.6);
+}
+
+/* =========================================================
+   BADGE HOLDER & CARD IMAGE
+========================================================= */
+.lanyard-badge-holder {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  padding: 7px;
+  background: #11202e;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 20px 48px -8px rgba(4, 25, 58, 0.24),
+    0 8px 20px rgba(4, 25, 58, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  user-select: none;
+}
+
+.lanyard-badge-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2481 / 3508;
+  border-radius: 14px;
+  display: block;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.lanyard-badge-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(255, 255, 255, 0.03) 40%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+/* =========================================================
+   ACCESSIBILITY: REDUCED MOTION SUPPORT
+========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .lanyard-card {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN
+========================================================= */
+@media (max-width: 1200px) {
+  .lanyard-wrapper {
+    height: 520px;
+  }
+}
+
+@media (max-width: 992px) {
+  .lanyard-wrapper {
+    height: 480px;
+  }
+  .lanyard-card {
+    width: clamp(220px, 32vw, 280px);
+  }
+}
+
+@media (max-width: 768px) {
+  .lanyard-wrapper {
+    height: 460px;
+  }
+  .lanyard-card {
+    width: clamp(210px, 52vw, 260px);
+  }
+}
+
+@media (max-width: 480px) {
+  .lanyard-wrapper {
+    height: 440px;
+  }
+  .lanyard-card {
+    width: clamp(200px, 60vw, 240px);
+  }
+}

@@ -1,0 +1,233 @@
+/* =========================================================
+   CONTACT & FOOTER (PORTFOLIO EDITORIAL DESIGN)
+   Full-Bleed Filled Background with Left/Right Edge Alignment
+========================================================= */
+
+.contact-section {
+  position: relative;
+  width: 100%;
+  background: #ffffff;
+  padding: clamp(60px, 7vw, 95px) 0 clamp(30px, 4vw, 45px);
+}
+
+.contact-section .container {
+  width: 100%;
+  max-width: 100% !important;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 5vw, 80px);
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Portfolio Contact Card Frame (Unconstrained Full-Width) ── */
+.portfolio-contact-card {
+  width: 100%;
+  background: transparent;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* ── Giant PORTFOLIO Title ─────────────────────────────── */
+.contact-hero-title {
+  font-size: clamp(3.8rem, 11vw, 8.5rem);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #000000;
+  margin: 0 0 clamp(36px, 4.5vw, 60px) 0;
+  text-align: left;
+  font-family: var(--hero-sans, 'Poppins', -apple-system, sans-serif);
+}
+
+/* ── Content Flex: Bio on Far Left, Contact Info on Far Right ── */
+.contact-content-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: clamp(32px, 5vw, 64px);
+  margin-bottom: clamp(36px, 5vw, 64px);
+  width: 100%;
+}
+
+/* Left Bio Column */
+.contact-col-bio {
+  flex: 1 1 auto;
+  max-width: 600px;
+}
+
+.contact-col-bio p {
+  font-size: clamp(1.02rem, 1.35vw, 1.25rem);
+  line-height: 1.55;
+  font-weight: 600;
+  color: #000000;
+  margin: 0;
+  text-align: left;
+}
+
+/* Right Contact Column */
+.contact-col-info {
+  position: relative;
+  top: -20px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  min-width: 260px;
+}
+
+.contact-info-heading {
+  font-size: clamp(0.96rem, 1.15vw, 1.12rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #000000;
+  margin: 0 0 8px 0;
+}
+
+.contact-details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-link,
+.contact-location {
+  font-size: clamp(0.96rem, 1.15vw, 1.12rem);
+  line-height: 1.6;
+  font-weight: 500;
+  color: #000000;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.contact-link:hover {
+  opacity: 0.65;
+  text-decoration: underline;
+}
+
+/* ── Centered Back To Button ────────────────────────────── */
+.contact-back-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: clamp(24px, 3.5vw, 36px);
+}
+
+.contact-back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #000000;
+  background: transparent;
+  border: 1.5px solid #000000;
+  border-radius: 5px;
+  padding: 8px 24px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+.contact-back-btn:hover {
+  background: #000000;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ── Horizontal Divider ─────────────────────────────────── */
+.contact-divider {
+  border: none;
+  height: 1px;
+  background: #111111;
+  opacity: 0.25;
+  margin: 0 0 clamp(16px, 2.5vw, 24px) 0;
+  width: 100%;
+}
+
+/* ── Bottom Bar ─────────────────────────────────────────── */
+.contact-bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.contact-bottom-bar .copyright-text {
+  font-size: clamp(0.86rem, 1vw, 0.95rem);
+  font-weight: 500;
+  color: #000000;
+  margin: 0;
+  text-align: center;
+}
+
+/* ── Responsive Breakpoints ─────────────────────────────── */
+@media (max-width: 860px) {
+  .contact-section .container {
+    padding: 0 20px;
+  }
+
+  .contact-content-grid {
+    flex-direction: column;
+    gap: 42px;
+  }
+
+  .contact-col-bio {
+    max-width: 100%;
+  }
+
+  .contact-col-info {
+    position: static;
+    top: 0;
+    margin-top: 8px;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .contact-hero-title {
+    font-size: clamp(2.8rem, 12vw, 4.8rem);
+    margin-bottom: 28px;
+  }
+
+  .contact-col-bio p {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-content-grid {
+    gap: 36px;
+  }
+
+  .contact-col-info {
+    position: static;
+    top: 0;
+    margin-top: 6px;
+  }
+}
+
+.contact-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.contact-phone-links {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.contact-phone-divider {
+  color: #000000;
+  font-weight: 500;
+  user-select: none;
+}

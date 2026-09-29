@@ -1,0 +1,472 @@
+/* =========================================================
+   GLASSMORPHISM CAPSULE NAVBAR
+========================================================= */
+
+:root {
+  --nav-capsule-bg: rgba(255, 255, 255, 0.28);
+  --nav-capsule-compact-bg: rgba(255, 255, 255, 0.38);
+  --nav-capsule-border: rgba(255, 255, 255, 0.55);
+  --nav-link-color: #04193a;
+  --nav-link-hover: #1b4ef5;
+  --nav-yellow: #ffd026;
+  --nav-yellow-hover: #fcc526;
+}
+
+/* =========================================================
+   MOBILE BACKDROP
+========================================================= */
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 25, 58, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9998;
+  animation: backdropFadeIn 0.25s ease;
+}
+
+@keyframes backdropFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   MAIN CAPSULE HEADER
+========================================================= */
+.navbar-capsule-wrapper {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding: 6px 8px 6px 8px;
+  box-sizing: border-box;
+
+  /* Pill Shape */
+  border-radius: 9999px;
+
+  /* Frosted Glassmorphism */
+  background: var(--nav-capsule-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--nav-capsule-border);
+  box-shadow:
+    0 12px 36px rgba(4, 25, 58, 0.09),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.85),
+    inset 0 -1px 1.5px rgba(255, 255, 255, 0.25);
+
+  /* Smooth capsule width & layout morph */
+  transition:
+    max-width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    gap 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    padding 0.35s ease,
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* Expanded State (At Hero on Desktop) */
+.navbar-capsule-wrapper.capsule-expanded {
+  width: auto;
+  max-width: min(95%, 880px);
+  gap: clamp(12px, 1.8vw, 24px);
+}
+
+.navbar-capsule-wrapper.capsule-expanded .nav-links-desktop {
+  opacity: 1;
+  max-width: 650px;
+  pointer-events: auto;
+}
+
+.navbar-capsule-wrapper.capsule-expanded .nav-active-pill {
+  opacity: 0;
+  max-width: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Compact State (Scrolled into any section) */
+.navbar-capsule-wrapper.capsule-compact {
+  width: auto;
+  max-width: min(92%, 360px);
+  gap: 16px;
+  background: var(--nav-capsule-compact-bg);
+  box-shadow:
+    0 10px 30px rgba(4, 25, 58, 0.12),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.95);
+}
+
+.navbar-capsule-wrapper.capsule-compact .nav-links-desktop {
+  opacity: 0;
+  max-width: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.navbar-capsule-wrapper.capsule-compact .nav-active-pill {
+  opacity: 1;
+  max-width: 180px;
+  pointer-events: auto;
+}
+
+/* Hover on Compact State -> Smoothly Expand & Reveal All Nav Links (Desktop) */
+@media (min-width: 841px) {
+  .navbar-capsule-wrapper.capsule-compact:hover,
+  .navbar-capsule-wrapper.capsule-compact.capsule-hover-expanded {
+    max-width: min(95%, 880px);
+    gap: clamp(12px, 1.8vw, 24px);
+    background: var(--nav-capsule-bg);
+    box-shadow:
+      0 18px 45px rgba(4, 25, 58, 0.16),
+      inset 0 1.5px 2px rgba(255, 255, 255, 0.95);
+  }
+
+  .navbar-capsule-wrapper.capsule-compact:hover .nav-links-desktop,
+  .navbar-capsule-wrapper.capsule-compact.capsule-hover-expanded
+    .nav-links-desktop {
+    opacity: 1;
+    max-width: 650px;
+    pointer-events: auto;
+  }
+
+  .navbar-capsule-wrapper.capsule-compact:hover .nav-active-pill,
+  .navbar-capsule-wrapper.capsule-compact.capsule-hover-expanded
+    .nav-active-pill {
+    opacity: 0;
+    max-width: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+}
+
+/* Left: Avatar Photo */
+.nav-avatar-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nav-avatar-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 2px 8px rgba(4, 25, 58, 0.12);
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.nav-avatar-link:hover .nav-avatar-img {
+  transform: scale(1.06);
+}
+
+/* Center Mode 1: All Section Links (Desktop) */
+.nav-links-desktop {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.6vw, 22px);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  transition:
+    opacity 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    max-width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-link-item {
+  font-family: var(--hero-sans, "Poppins", -apple-system, sans-serif);
+  font-size: clamp(13px, 1vw, 15px);
+  font-weight: 500;
+  color: var(--nav-link-color);
+  text-decoration: none;
+  letter-spacing: -0.15px;
+  position: relative;
+  white-space: nowrap;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.nav-link-item:hover,
+.nav-link-item.active-link {
+  color: var(--nav-link-hover);
+  transform: translateY(-1px);
+}
+
+/* Center Mode 2: Single Active Section Pill (Compact) */
+.nav-active-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition:
+    opacity 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    max-width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-active-link {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 14px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 9999px;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    0 2px 8px rgba(4, 25, 58, 0.05);
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.nav-active-link:hover {
+  background: rgba(255, 255, 255, 0.75);
+  transform: translateY(-1px);
+}
+
+.nav-active-text {
+  font-family: var(--hero-sans, "Poppins", -apple-system, sans-serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: #04193a;
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+  animation: navTextSlide 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes navTextSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Right: Yellow Pill Button "Hire me" */
+.nav-hire-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px 22px;
+  background: var(--nav-yellow);
+  color: #04193a;
+  border-radius: 9999px;
+  font-family: var(--hero-sans, "Poppins", -apple-system, sans-serif);
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: -0.1px;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 3px 14px rgba(255, 208, 38, 0.35);
+  flex-shrink: 0;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.nav-mail-icon {
+  width: 15px;
+  height: 15px;
+  fill: #ffd026;
+  display: block;
+}
+
+.nav-hire-btn:hover {
+  background: var(--nav-yellow-hover);
+  color: #04193a;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255, 208, 38, 0.55);
+}
+
+/* Mobile Toggle Hamburger Button */
+.nav-mobile-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 24px;
+  height: 18px;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.nav-mobile-toggle span {
+  width: 100%;
+  height: 2px;
+  border-radius: 20px;
+  background: #04193a;
+  transition: all 0.3s ease;
+}
+
+.nav-mobile-toggle.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.nav-mobile-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-mobile-toggle.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* =========================================================
+   MOBILE DRAWER (Hidden until hamburger clicked)
+========================================================= */
+.nav-mobile-drawer {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px) scale(0.96);
+  width: min(90%, 380px);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 26px;
+  padding: 20px 22px 24px 22px;
+  box-shadow: 0 24px 60px rgba(4, 25, 58, 0.22);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-mobile-drawer.drawer-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(4, 25, 58, 0.08);
+}
+
+.drawer-title {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #64748b;
+}
+
+.drawer-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  color: #04193a;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.drawer-link-item {
+  font-size: 16px;
+  font-weight: 600;
+  color: #04193a;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.drawer-link-item:hover,
+.drawer-link-item.active-drawer-link {
+  background: rgba(255, 208, 38, 0.2);
+  color: #04193a;
+  font-weight: 700;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN (Mobile & Tablet)
+========================================================= */
+
+@media (max-width: 840px) {
+  .nav-links-desktop {
+    display: none !important;
+  }
+
+  .navbar-capsule-wrapper {
+    top: 16px;
+    height: 50px;
+    padding: 5px 6px;
+    gap: 8px;
+    max-width: min(92%, 320px);
+  }
+
+  /* Hide the active section pill on mobile — just avatar + hire me + hamburger */
+  .navbar-capsule-wrapper .nav-active-pill {
+    display: none !important;
+  }
+
+  .nav-avatar-img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nav-hire-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+    gap: 5px;
+  }
+
+  .nav-mail-icon {
+    width: 13px;
+    height: 13px;
+  }
+
+  .nav-mobile-toggle {
+    display: flex;
+    margin-right: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-capsule-wrapper {
+    top: 12px;
+    height: 46px;
+    padding: 4px 6px;
+    gap: 6px;
+    max-width: min(94%, 290px);
+  }
+
+  .nav-avatar-img {
+    width: 34px;
+    height: 34px;
+  }
+
+  .nav-hire-btn {
+    padding: 7px 14px;
+    font-size: 12px;
+  }
+}

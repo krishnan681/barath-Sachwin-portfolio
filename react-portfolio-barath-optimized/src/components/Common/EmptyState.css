@@ -1,0 +1,66 @@
+/* =========================================================
+   EMPTY STATE STYLING
+========================================================= */
+
+.empty-state-card {
+  width: 100%;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 40px 24px;
+  border-radius: 20px;
+  background: var(--project-card-bg, #0f172a);
+  border: 1px dashed var(--project-border, rgba(255, 255, 255, 0.15));
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-state-icon-wrap {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--project-accent, #38bdf8);
+  margin-bottom: 16px;
+}
+
+.empty-state-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--project-text, #ffffff);
+  margin-bottom: 8px;
+}
+
+.empty-state-desc {
+  font-size: 0.88rem;
+  color: var(--project-text-muted, #94a3b8);
+  line-height: 1.5;
+  margin-bottom: 20px;
+  max-width: 380px;
+}
+
+.empty-state-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 20px;
+  border-radius: 9999px;
+  background: var(--project-accent, #0284c7);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.empty-state-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
+}

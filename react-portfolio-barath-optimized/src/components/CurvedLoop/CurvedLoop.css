@@ -1,0 +1,231 @@
+/* ===========================================
+   CURVED / STRAIGHT LOOP TICKER BANNER
+   Dark Blue Theme with Alternating Solid/Outline Typography
+=========================================== */
+
+.curved-loop-jacket {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+  background: #194a9847;
+  background: linear-gradient(90deg, #3b3bad 0%, #537cb5 50%, #2f2f98 100%);
+ 
+  border-top: 1px solid rgba(56, 189, 248, 0.22);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.22);
+  box-shadow: 0 6px 28px rgba(3, 19, 46, 0.4);
+  z-index: 15;
+}
+
+
+ 
+
+
+/* Subtle top and bottom glow accents */
+.curved-loop-jacket::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.6), rgba(255, 42, 117, 0.4), transparent);
+  pointer-events: none;
+}
+
+.curved-loop-jacket::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 42, 117, 0.4), rgba(56, 189, 248, 0.6), transparent);
+  pointer-events: none;
+}
+
+/* Straight Line Ticker Mode */
+.curved-loop-jacket.straight-loop-jacket {
+  min-height: 72px;
+  height: 72px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Track container for smooth 60fps RAF translation */
+.curved-loop-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.curved-loop-set {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Individual Item: Word + Sparkle Separator */
+.loop-item {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  cursor: inherit;
+}
+
+/* Typography */
+.loop-word {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  text-transform: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Solid Bold White Word */
+.loop-item-solid .loop-word {
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  -webkit-text-stroke: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.loop-item-solid:hover .loop-word {
+  color: #f0f7ff;
+  -webkit-text-fill-color: #f0f7ff;
+  transform: scale(1.03);
+}
+
+/* Outlined / Hollow Stroked Word */
+.loop-item-outline .loop-word {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px rgb(255, 255, 255);
+  transition: -webkit-text-stroke 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.loop-item-outline:hover .loop-word {
+  -webkit-text-stroke: 0.8px rgba(255, 255, 255, 0.9);
+  transform: scale(1.03);
+}
+
+/* Pink / Magenta Diamond Star Sparkle Separator */
+.loop-sparkle-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 clamp(20px, 2.5vw, 36px);
+  flex-shrink: 0;
+}
+
+.loop-sparkle-icon {
+  display: block;
+  width: 17px;
+  height: 17px;
+  fill: #ff2a75;
+  filter: drop-shadow(0 0 8px rgba(255, 42, 117, 0.65));
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.loop-item:hover .loop-sparkle-icon {
+  transform: scale(1.25) rotate(45deg);
+}
+
+/* ===========================================
+   CURVED SVG MODE (When curveAmount > 0)
+=========================================== */
+.curved-loop-jacket:not(.straight-loop-jacket) {
+  min-height: 160px;
+  padding: 15px 0;
+}
+
+.curved-loop-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+}
+
+.curved-loop-text {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  fill: #ffffff;
+  dominant-baseline: central;
+  alignment-baseline: central;
+  white-space: pre;
+}
+
+/* ===========================================
+   RESPONSIVE MEDIA QUERIES
+=========================================== */
+@media (max-width: 1200px) {
+  .curved-loop-jacket.straight-loop-jacket {
+    height: 66px;
+    min-height: 66px;
+  }
+  .loop-word {
+    font-size: 26px;
+  }
+  .loop-sparkle-icon {
+    width: 15px;
+    height: 15px;
+  }
+  .loop-sparkle-wrapper {
+    margin: 0 clamp(16px, 2.2vw, 28px);
+  }
+}
+
+@media (max-width: 768px) {
+  .curved-loop-jacket.straight-loop-jacket {
+    height: 56px;
+    min-height: 56px;
+  }
+  .loop-word {
+    font-size: 20px;
+  }
+  .loop-item-outline .loop-word {
+    -webkit-text-stroke: 1.3px rgba(255, 255, 255, 0.45);
+  }
+  .loop-sparkle-icon {
+    width: 13px;
+    height: 13px;
+  }
+  .loop-sparkle-wrapper {
+    margin: 0 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .curved-loop-jacket.straight-loop-jacket {
+    height: 48px;
+    min-height: 48px;
+  }
+  .loop-word {
+    font-size: 16px;
+  }
+  .loop-item-outline .loop-word {
+    -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.5);
+  }
+  .loop-sparkle-icon {
+    width: 11px;
+    height: 11px;
+  }
+  .loop-sparkle-wrapper {
+    margin: 0 12px;
+  }
+}
