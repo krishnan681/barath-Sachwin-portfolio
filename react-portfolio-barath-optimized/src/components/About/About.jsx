@@ -136,6 +136,17 @@ function AnimatedWordText({
 export default function About() {
   const sectionRef = useRef(null);
   const [isRevealed, setIsRevealed] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    return typeof window !== "undefined" ? window.innerWidth <= 768 : false;
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -170,7 +181,10 @@ export default function About() {
         {/* ================= 2-COLUMN SHOWCASE (LANYARD LEFT, CONTENT RIGHT) ================= */}
         <div className="about-showcase-grid">
           {/* Left Column: Interactive 3D Lanyard */}
-          <div className="about-lanyard-col" data-aos="fade-right">
+          <div
+            className="about-lanyard-col"
+            data-aos={isMobile ? undefined : "fade-right"}
+          >
             <div className="about-lanyard-container">
               <Lanyard
                 frontImage={aboutProfileImg}
@@ -181,7 +195,10 @@ export default function About() {
           </div>
 
           {/* Right Column: Bio Content */}
-          <div className="about-content-col" data-aos="fade-left">
+          <div
+            className="about-content-col"
+            data-aos={isMobile ? undefined : "fade-left"}
+          >
             {/* Hey Title with Bounce Animation */}
             <div
               className={`hey ${isRevealed ? "hey-bounce-in" : ""}`}

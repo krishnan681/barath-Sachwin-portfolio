@@ -570,6 +570,16 @@
 
 /* Tablet Portrait */
 @media (max-width: 768px) {
+  /* Disable AOS animations for About section on mobile */
+  .about [data-aos],
+  .about .about-lanyard-col,
+  .about .about-content-col {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
   .about {
     padding: clamp(45px, 6vw, 70px) 0 clamp(45px, 6vw, 70px) 0;
   }
